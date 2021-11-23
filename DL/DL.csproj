@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{19DBE443-7270-48DF-889C-4039338E0285}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DL</RootNamespace>
+    <AssemblyName>DL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Empleado.cs">
+      <DependentUpon>IEspinozaAseguradora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmpleadoGetAll_Result.cs">
+      <DependentUpon>IEspinozaAseguradora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmpleadoGetAll_Result1.cs">
+      <DependentUpon>IEspinozaAseguradora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmpleadoGetAll_Result2.cs">
+      <DependentUpon>IEspinozaAseguradora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmpleadoGetById_Result.cs">
+      <DependentUpon>IEspinozaAseguradora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmpleadoGetById_Result1.cs">
+      <DependentUpon>IEspinozaAseguradora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Empresa.cs">
+      <DependentUpon>IEspinozaAseguradora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmpresaGetAll_Result.cs">
+      <DependentUpon>IEspinozaAseguradora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmpresaGetById_Result.cs">
+      <DependentUpon>IEspinozaAseguradora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IEspinozaAseguradora.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IEspinozaAseguradora.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IEspinozaAseguradora.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IEspinozaAseguradora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IEspinozaAseguradora.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IEspinozaAseguradora.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Poliza.cs">
+      <DependentUpon>IEspinozaAseguradora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PolizaGetAll_Result.cs">
+      <DependentUpon>IEspinozaAseguradora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PolizaGetById_Result.cs">
+      <DependentUpon>IEspinozaAseguradora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubPoliza.cs">
+      <DependentUpon>IEspinozaAseguradora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubPolizaGetAll_Result.cs">
+      <DependentUpon>IEspinozaAseguradora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubPolizaGetById_Result.cs">
+      <DependentUpon>IEspinozaAseguradora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.cs">
+      <DependentUpon>IEspinozaAseguradora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioGetAll_Result.cs">
+      <DependentUpon>IEspinozaAseguradora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioGetById_Result.cs">
+      <DependentUpon>IEspinozaAseguradora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vigencia.cs">
+      <DependentUpon>IEspinozaAseguradora.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="IEspinozaAseguradora.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>IEspinozaAseguradora.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="IEspinozaAseguradora.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IEspinozaAseguradora.edmx</DependentUpon>
+      <LastGenOutput>IEspinozaAseguradora.Context.cs</LastGenOutput>
+    </None>
+    <None Include="IEspinozaAseguradora.edmx.diagram">
+      <DependentUpon>IEspinozaAseguradora.edmx</DependentUpon>
+    </None>
+    <None Include="IEspinozaAseguradora.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IEspinozaAseguradora.edmx</DependentUpon>
+      <LastGenOutput>IEspinozaAseguradora.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

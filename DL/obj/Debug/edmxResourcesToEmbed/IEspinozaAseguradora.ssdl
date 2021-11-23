@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IEspinozaAseguradoraModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'IEspinozaAseguradora.dbo.Empleado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="Nombre" />
+      <PropertyRef Name="ApellidoPaterno" />
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="Telefono" />
+    </Key>
+    <Property Name="NumEmpleado" Type="varchar" MaxLength="50" />
+    <Property Name="RFC" Type="varchar" MaxLength="20" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ApellidoPaterno" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ApellidoMaterno" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="254" Nullable="false" />
+    <Property Name="Telefono" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="FechaNacimiento" Type="date" />
+    <Property Name="NSS" Type="varchar" MaxLength="20" />
+    <Property Name="FechaIngreso" Type="date" />
+    <Property Name="Foto" Type="varbinary(max)" />
+    <Property Name="IdEmpresa" Type="int" />
+  </EntityType>
+  <EntityType Name="Empresa">
+    <Key>
+      <PropertyRef Name="IdEmpresa" />
+    </Key>
+    <Property Name="IdEmpresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="Telefono" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="24" />
+    <Property Name="DireccionWeb" Type="varchar" MaxLength="100" />
+    <Property Name="Logo" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Poliza">
+    <Key>
+      <PropertyRef Name="IdPoliza" />
+    </Key>
+    <Property Name="IdPoliza" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="IdSubPoliza" Type="tinyint" />
+    <Property Name="NumeroPoliza" Type="varchar" MaxLength="20" />
+    <Property Name="FechaCreacion" Type="datetime" />
+    <Property Name="FechaModificacion" Type="datetime" />
+    <Property Name="IdUsuario" Type="int" />
+  </EntityType>
+  <EntityType Name="SubPoliza">
+    <Key>
+      <PropertyRef Name="IdSubPoliza" />
+    </Key>
+    <Property Name="IdSubPoliza" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ApellidoPaterno" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ApellidoMaterno" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="254" Nullable="false" />
+    <Property Name="Sexo" Type="char" MaxLength="2" />
+    <Property Name="Telefono" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Celular" Type="varchar" MaxLength="20" />
+    <Property Name="FechaNacimiento" Type="date" />
+    <Property Name="CURP" Type="varchar" MaxLength="50" />
+    <Property Name="Imagen" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Vigencia">
+    <Key>
+      <PropertyRef Name="IdVigencia" />
+    </Key>
+    <Property Name="IdVigencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FechaInicio" Type="date" />
+    <Property Name="FechaFin" Type="date" />
+    <Property Name="FechaCreacion" Type="datetime" />
+    <Property Name="FechaModificacion" Type="datetime" />
+    <Property Name="IdUsuario" Type="int" />
+    <Property Name="IdPoliza" Type="int" />
+  </EntityType>
+  <Association Name="FK__Empleado__IdEmpr__33D4B598">
+    <End Role="Empresa" Type="Self.Empresa" Multiplicity="0..1" />
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresa">
+        <PropertyRef Name="IdEmpresa" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="IdEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Poliza__IdSubPol__48CFD27E">
+    <End Role="SubPoliza" Type="Self.SubPoliza" Multiplicity="0..1" />
+    <End Role="Poliza" Type="Self.Poliza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubPoliza">
+        <PropertyRef Name="IdSubPoliza" />
+      </Principal>
+      <Dependent Role="Poliza">
+        <PropertyRef Name="IdSubPoliza" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Poliza__IdUsuari__49C3F6B7">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="Poliza" Type="Self.Poliza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="Poliza">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Vigencia__IdPoli__4D94879B">
+    <End Role="Poliza" Type="Self.Poliza" Multiplicity="0..1" />
+    <End Role="Vigencia" Type="Self.Vigencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Poliza">
+        <PropertyRef Name="IdPoliza" />
+      </Principal>
+      <Dependent Role="Vigencia">
+        <PropertyRef Name="IdPoliza" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Vigencia__IdUsua__4CA06362">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="Vigencia" Type="Self.Vigencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="Vigencia">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="EmpleadoAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NumEmpleado" Type="varchar" Mode="In" />
+    <Parameter Name="RFC" Type="varchar" Mode="In" />
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="ApellidoPaterno" Type="varchar" Mode="In" />
+    <Parameter Name="ApellidoMaterno" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="Telefono" Type="varchar" Mode="In" />
+    <Parameter Name="FechaNacimiento" Type="varchar" Mode="In" />
+    <Parameter Name="NSS" Type="varchar" Mode="In" />
+    <Parameter Name="FechaIngreso" Type="varchar" Mode="In" />
+    <Parameter Name="Foto" Type="varbinary(max)" Mode="In" />
+    <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+  </Function>
+  <Function Name="EmpleadoDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NumEmpleado" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="EmpleadoGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="ApellidoPaterno" Type="varchar" Mode="In" />
+    <Parameter Name="ApellidoMaterno" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="EmpleadoGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NumEmpleado" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="EmpleadoUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NumEmpleado" Type="varchar" Mode="In" />
+    <Parameter Name="RFC" Type="varchar" Mode="In" />
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="ApellidoPaterno" Type="varchar" Mode="In" />
+    <Parameter Name="ApellidoMaterno" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="Telefono" Type="varchar" Mode="In" />
+    <Parameter Name="FechaNacimiento" Type="varchar" Mode="In" />
+    <Parameter Name="NSS" Type="varchar" Mode="In" />
+    <Parameter Name="FechaIngreso" Type="varchar" Mode="In" />
+    <Parameter Name="Foto" Type="varbinary(max)" Mode="In" />
+    <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+  </Function>
+  <Function Name="EmpresaAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="Telefono" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="DireccionWeb" Type="varchar" Mode="In" />
+    <Parameter Name="Logo" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="EmpresaDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+  </Function>
+  <Function Name="EmpresaGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="EmpresaGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+  </Function>
+  <Function Name="EmpresaUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="Telefono" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="DireccionWeb" Type="varchar" Mode="In" />
+    <Parameter Name="Logo" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="PolizaAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="IdSubPoliza" Type="tinyint" Mode="In" />
+    <Parameter Name="NumeroPoliza" Type="varchar" Mode="In" />
+    <Parameter Name="FechaInicio" Type="varchar" Mode="In" />
+    <Parameter Name="FechaFin" Type="varchar" Mode="In" />
+    <Parameter Name="IdUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PolizaDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdPoliza" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PolizaGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PolizaGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdPoliza" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PolizaUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdPoliza" Type="int" Mode="In" />
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="IdSubPoliza" Type="tinyint" Mode="In" />
+    <Parameter Name="NumeroPoliza" Type="varchar" Mode="In" />
+    <Parameter Name="IdUsuario" Type="int" Mode="In" />
+    <Parameter Name="FechaInicio" Type="varchar" Mode="In" />
+    <Parameter Name="FechaFin" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SubPolizaAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SubPolizaDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdSubPoliza" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="SubPolizaGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SubPolizaGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdSubPoliza" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="SubPolizaUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdSubPoliza" Type="tinyint" Mode="In" />
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UsuarioAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="ApellidoPaterno" Type="varchar" Mode="In" />
+    <Parameter Name="ApellidoMaterno" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="Sexo" Type="char" Mode="In" />
+    <Parameter Name="Telefono" Type="varchar" Mode="In" />
+    <Parameter Name="Celular" Type="varchar" Mode="In" />
+    <Parameter Name="FechaNacimiento" Type="varchar" Mode="In" />
+    <Parameter Name="CURP" Type="varchar" Mode="In" />
+    <Parameter Name="Imagen" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="UsuarioDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UsuarioGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="UsuarioGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UsuarioUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdUsuario" Type="int" Mode="In" />
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="ApellidoPaterno" Type="varchar" Mode="In" />
+    <Parameter Name="ApellidoMaterno" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="Sexo" Type="char" Mode="In" />
+    <Parameter Name="Telefono" Type="varchar" Mode="In" />
+    <Parameter Name="Celular" Type="varchar" Mode="In" />
+    <Parameter Name="FechaNacimiento" Type="varchar" Mode="In" />
+    <Parameter Name="CURP" Type="varchar" Mode="In" />
+    <Parameter Name="Imagen" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <EntityContainer Name="IEspinozaAseguradoraModelStoreContainer">
+    <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Poliza" EntityType="Self.Poliza" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubPoliza" EntityType="Self.SubPoliza" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vigencia" EntityType="Self.Vigencia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Empleado" EntityType="Self.Empleado" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Empleado].[NumEmpleado] AS [NumEmpleado], 
+    [Empleado].[RFC] AS [RFC], 
+    [Empleado].[Nombre] AS [Nombre], 
+    [Empleado].[ApellidoPaterno] AS [ApellidoPaterno], 
+    [Empleado].[ApellidoMaterno] AS [ApellidoMaterno], 
+    [Empleado].[Email] AS [Email], 
+    [Empleado].[Telefono] AS [Telefono], 
+    [Empleado].[FechaNacimiento] AS [FechaNacimiento], 
+    [Empleado].[NSS] AS [NSS], 
+    [Empleado].[FechaIngreso] AS [FechaIngreso], 
+    [Empleado].[Foto] AS [Foto], 
+    [Empleado].[IdEmpresa] AS [IdEmpresa]
+    FROM [dbo].[Empleado] AS [Empleado]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__Empleado__IdEmpr__33D4B598" Association="Self.FK__Empleado__IdEmpr__33D4B598">
+      <End Role="Empresa" EntitySet="Empresa" />
+      <End Role="Empleado" EntitySet="Empleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Poliza__IdSubPol__48CFD27E" Association="Self.FK__Poliza__IdSubPol__48CFD27E">
+      <End Role="SubPoliza" EntitySet="SubPoliza" />
+      <End Role="Poliza" EntitySet="Poliza" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Poliza__IdUsuari__49C3F6B7" Association="Self.FK__Poliza__IdUsuari__49C3F6B7">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Poliza" EntitySet="Poliza" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Vigencia__IdPoli__4D94879B" Association="Self.FK__Vigencia__IdPoli__4D94879B">
+      <End Role="Poliza" EntitySet="Poliza" />
+      <End Role="Vigencia" EntitySet="Vigencia" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Vigencia__IdUsua__4CA06362" Association="Self.FK__Vigencia__IdUsua__4CA06362">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Vigencia" EntitySet="Vigencia" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

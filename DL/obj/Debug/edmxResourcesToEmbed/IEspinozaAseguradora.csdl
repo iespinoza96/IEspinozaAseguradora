@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IEspinozaAseguradoraModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Empresa">
+    <Key>
+      <PropertyRef Name="IdEmpresa" />
+    </Key>
+    <Property Name="IdEmpresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="24" FixedLength="false" Unicode="false" />
+    <Property Name="DireccionWeb" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Empleadoes" Relationship="Self.FK__Empleado__IdEmpr__33D4B598" FromRole="Empresa" ToRole="Empleado" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ApellidoPaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ApellidoMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="254" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Sexo" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Celular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+    <Property Name="CURP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Polizas" Relationship="IEspinozaAseguradoraModel.FK__Poliza__IdUsuari__49C3F6B7" FromRole="Usuario" ToRole="Poliza" />
+    <NavigationProperty Name="Vigencias" Relationship="IEspinozaAseguradoraModel.FK__Vigencia__IdUsua__4CA06362" FromRole="Usuario" ToRole="Vigencia" />
+  </EntityType>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="Nombre" />
+      <PropertyRef Name="ApellidoPaterno" />
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="Telefono" />
+    </Key>
+    <Property Name="NumEmpleado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RFC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ApellidoPaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ApellidoMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="254" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+    <Property Name="NSS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="FechaIngreso" Type="DateTime" Precision="0" />
+    <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="IdEmpresa" Type="Int32" />
+    <NavigationProperty Name="Empresa" Relationship="Self.FK__Empleado__IdEmpr__33D4B598" FromRole="Empleado" ToRole="Empresa" />
+  </EntityType>
+  <Association Name="FK__Empleado__IdEmpr__33D4B598">
+    <End Role="Empresa" Type="Self.Empresa" Multiplicity="0..1" />
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresa">
+        <PropertyRef Name="IdEmpresa" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="IdEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="IEspinozaAseguradoraEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Empresas" EntityType="Self.Empresa" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+    <EntitySet Name="Empleadoes" EntityType="Self.Empleado" />
+    <AssociationSet Name="FK__Empleado__IdEmpr__33D4B598" Association="Self.FK__Empleado__IdEmpr__33D4B598">
+      <End Role="Empresa" EntitySet="Empresas" />
+      <End Role="Empleado" EntitySet="Empleadoes" />
+    </AssociationSet>
+    <FunctionImport Name="EmpleadoAdd">
+      <Parameter Name="NumEmpleado" Mode="In" Type="String" />
+      <Parameter Name="RFC" Mode="In" Type="String" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
+      <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="FechaNacimiento" Mode="In" Type="String" />
+      <Parameter Name="NSS" Mode="In" Type="String" />
+      <Parameter Name="FechaIngreso" Mode="In" Type="String" />
+      <Parameter Name="Foto" Mode="In" Type="Binary" />
+      <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="EmpleadoUpdate">
+      <Parameter Name="NumEmpleado" Mode="In" Type="String" />
+      <Parameter Name="RFC" Mode="In" Type="String" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
+      <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="FechaNacimiento" Mode="In" Type="String" />
+      <Parameter Name="NSS" Mode="In" Type="String" />
+      <Parameter Name="FechaIngreso" Mode="In" Type="String" />
+      <Parameter Name="Foto" Mode="In" Type="Binary" />
+      <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="EmpresaAdd">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="DireccionWeb" Mode="In" Type="String" />
+      <Parameter Name="Logo" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="EmpresaDelete">
+      <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="EmpresaGetAll" ReturnType="Collection(IEspinozaAseguradoraModel.EmpresaGetAll_Result)" />
+    <FunctionImport Name="EmpresaGetById" ReturnType="Collection(IEspinozaAseguradoraModel.EmpresaGetById_Result)">
+      <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="EmpresaUpdate">
+      <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="DireccionWeb" Mode="In" Type="String" />
+      <Parameter Name="Logo" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="UsuarioAdd">
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
+      <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Sexo" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Celular" Mode="In" Type="String" />
+      <Parameter Name="FechaNacimiento" Mode="In" Type="String" />
+      <Parameter Name="CURP" Mode="In" Type="String" />
+      <Parameter Name="Imagen" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="UsuarioDelete">
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UsuarioGetAll" ReturnType="Collection(IEspinozaAseguradoraModel.UsuarioGetAll_Result)" />
+    <FunctionImport Name="UsuarioGetById" ReturnType="Collection(IEspinozaAseguradoraModel.UsuarioGetById_Result)">
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UsuarioUpdate">
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
+      <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Sexo" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Celular" Mode="In" Type="String" />
+      <Parameter Name="FechaNacimiento" Mode="In" Type="String" />
+      <Parameter Name="CURP" Mode="In" Type="String" />
+      <Parameter Name="Imagen" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="EmpleadoDelete">
+      <Parameter Name="NumEmpleado" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="EmpleadoGetById" ReturnType="Collection(IEspinozaAseguradoraModel.EmpleadoGetById_Result1)">
+      <Parameter Name="NumEmpleado" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="EmpleadoGetAll" ReturnType="Collection(IEspinozaAseguradoraModel.EmpleadoGetAll_Result2)">
+      <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
+      <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="SubPolizas" EntityType="IEspinozaAseguradoraModel.SubPoliza" />
+    <FunctionImport Name="SubPolizaAdd">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SubPolizaDelete">
+      <Parameter Name="IdSubPoliza" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="SubPolizaGetAll" ReturnType="Collection(IEspinozaAseguradoraModel.SubPolizaGetAll_Result)" />
+    <FunctionImport Name="SubPolizaGetById" ReturnType="Collection(IEspinozaAseguradoraModel.SubPolizaGetById_Result)">
+      <Parameter Name="IdSubPoliza" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="SubPolizaUpdate">
+      <Parameter Name="IdSubPoliza" Mode="In" Type="Byte" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Polizas" EntityType="IEspinozaAseguradoraModel.Poliza" />
+    <EntitySet Name="Vigencias" EntityType="IEspinozaAseguradoraModel.Vigencia" />
+    <AssociationSet Name="FK__Poliza__IdSubPol__48CFD27E" Association="IEspinozaAseguradoraModel.FK__Poliza__IdSubPol__48CFD27E">
+      <End Role="SubPoliza" EntitySet="SubPolizas" />
+      <End Role="Poliza" EntitySet="Polizas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Poliza__IdUsuari__49C3F6B7" Association="IEspinozaAseguradoraModel.FK__Poliza__IdUsuari__49C3F6B7">
+      <End Role="Usuario" EntitySet="Usuarios" />
+      <End Role="Poliza" EntitySet="Polizas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Vigencia__IdPoli__4D94879B" Association="IEspinozaAseguradoraModel.FK__Vigencia__IdPoli__4D94879B">
+      <End Role="Poliza" EntitySet="Polizas" />
+      <End Role="Vigencia" EntitySet="Vigencias" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Vigencia__IdUsua__4CA06362" Association="IEspinozaAseguradoraModel.FK__Vigencia__IdUsua__4CA06362">
+      <End Role="Usuario" EntitySet="Usuarios" />
+      <End Role="Vigencia" EntitySet="Vigencias" />
+    </AssociationSet>
+    <FunctionImport Name="PolizaAdd">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="IdSubPoliza" Mode="In" Type="Byte" />
+      <Parameter Name="NumeroPoliza" Mode="In" Type="String" />
+      <Parameter Name="FechaInicio" Mode="In" Type="String" />
+      <Parameter Name="FechaFin" Mode="In" Type="String" />
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PolizaDelete">
+      <Parameter Name="IdPoliza" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PolizaGetAll" ReturnType="Collection(IEspinozaAseguradoraModel.PolizaGetAll_Result)" />
+    <FunctionImport Name="PolizaGetById" ReturnType="Collection(IEspinozaAseguradoraModel.PolizaGetById_Result)">
+      <Parameter Name="IdPoliza" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PolizaUpdate">
+      <Parameter Name="IdPoliza" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="IdSubPoliza" Mode="In" Type="Byte" />
+      <Parameter Name="NumeroPoliza" Mode="In" Type="String" />
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="FechaInicio" Mode="In" Type="String" />
+      <Parameter Name="FechaFin" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="EmpleadoGetAll_Result">
+    <Property Type="String" Name="NumEmpleado" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="RFC" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="254" />
+    <Property Type="String" Name="Telefono" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" />
+    <Property Type="String" Name="NSS" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="FechaIngreso" Nullable="true" />
+    <Property Type="Binary" Name="Foto" Nullable="true" />
+    <Property Type="Int32" Name="IdEmpresa" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="EmpleadoGetById_Result">
+    <Property Type="String" Name="NumEmpleado" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="RFC" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="254" />
+    <Property Type="String" Name="Telefono" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" />
+    <Property Type="String" Name="NSS" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="FechaIngreso" Nullable="true" />
+    <Property Type="Binary" Name="Foto" Nullable="true" />
+    <Property Type="Int32" Name="IdEmpresa" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="EmpresaGetAll_Result">
+    <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="24" />
+    <Property Type="String" Name="DireccionWeb" Nullable="true" MaxLength="100" />
+    <Property Type="Binary" Name="Logo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="EmpresaGetById_Result">
+    <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="24" />
+    <Property Type="String" Name="DireccionWeb" Nullable="true" MaxLength="100" />
+    <Property Type="Binary" Name="Logo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="UsuarioGetAll_Result">
+    <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="254" />
+    <Property Type="String" Name="Sexo" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="Telefono" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Celular" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" />
+    <Property Type="String" Name="CURP" Nullable="true" MaxLength="50" />
+    <Property Type="Binary" Name="Imagen" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="UsuarioGetById_Result">
+    <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="254" />
+    <Property Type="String" Name="Sexo" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="Telefono" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Celular" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" />
+    <Property Type="String" Name="CURP" Nullable="true" MaxLength="50" />
+    <Property Type="Binary" Name="Imagen" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="EmpleadoGetById_Result1">
+    <Property Type="String" Name="NumEmpleado" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="RFC" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="254" />
+    <Property Type="String" Name="Telefono" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" />
+    <Property Type="String" Name="NSS" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="FechaIngreso" Nullable="true" />
+    <Property Type="Binary" Name="Foto" Nullable="true" />
+    <Property Type="Int32" Name="IdEmpresa" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="EmpleadoGetAll_Result1">
+    <Property Type="String" Name="NumEmpleado" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="RFC" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="254" />
+    <Property Type="String" Name="Telefono" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" />
+    <Property Type="String" Name="NSS" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="FechaIngreso" Nullable="true" />
+    <Property Type="Binary" Name="Foto" Nullable="true" />
+    <Property Type="Int32" Name="IdEmpresa" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="EmpleadoGetAll_Result2">
+    <Property Type="String" Name="NumEmpleado" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="RFC" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="254" />
+    <Property Type="String" Name="Telefono" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" />
+    <Property Type="String" Name="NSS" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="FechaIngreso" Nullable="true" />
+    <Property Type="Binary" Name="Foto" Nullable="true" />
+    <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+    <Property Type="String" Name="EmpresaNombre" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <EntityType Name="SubPoliza">
+    <Key>
+      <PropertyRef Name="IdSubPoliza" />
+    </Key>
+    <Property Name="IdSubPoliza" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Polizas" Relationship="IEspinozaAseguradoraModel.FK__Poliza__IdSubPol__48CFD27E" FromRole="SubPoliza" ToRole="Poliza" />
+  </EntityType>
+  <ComplexType Name="SubPolizaGetAll_Result">
+    <Property Type="Byte" Name="IdSubPoliza" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="SubPolizaGetById_Result">
+    <Property Type="Byte" Name="IdSubPoliza" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <EntityType Name="Poliza">
+    <Key>
+      <PropertyRef Name="IdPoliza" />
+    </Key>
+    <Property Name="IdPoliza" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IdSubPoliza" Type="Byte" />
+    <Property Name="NumeroPoliza" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+    <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="IdUsuario" Type="Int32" />
+    <NavigationProperty Name="SubPoliza" Relationship="IEspinozaAseguradoraModel.FK__Poliza__IdSubPol__48CFD27E" FromRole="Poliza" ToRole="SubPoliza" />
+    <NavigationProperty Name="Usuario" Relationship="IEspinozaAseguradoraModel.FK__Poliza__IdUsuari__49C3F6B7" FromRole="Poliza" ToRole="Usuario" />
+    <NavigationProperty Name="Vigencias" Relationship="IEspinozaAseguradoraModel.FK__Vigencia__IdPoli__4D94879B" FromRole="Poliza" ToRole="Vigencia" />
+  </EntityType>
+  <EntityType Name="Vigencia">
+    <Key>
+      <PropertyRef Name="IdVigencia" />
+    </Key>
+    <Property Name="IdVigencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FechaInicio" Type="DateTime" Precision="0" />
+    <Property Name="FechaFin" Type="DateTime" Precision="0" />
+    <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+    <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="IdUsuario" Type="Int32" />
+    <Property Name="IdPoliza" Type="Int32" />
+    <NavigationProperty Name="Poliza" Relationship="IEspinozaAseguradoraModel.FK__Vigencia__IdPoli__4D94879B" FromRole="Vigencia" ToRole="Poliza" />
+    <NavigationProperty Name="Usuario" Relationship="IEspinozaAseguradoraModel.FK__Vigencia__IdUsua__4CA06362" FromRole="Vigencia" ToRole="Usuario" />
+  </EntityType>
+  <Association Name="FK__Poliza__IdSubPol__48CFD27E">
+    <End Type="IEspinozaAseguradoraModel.SubPoliza" Role="SubPoliza" Multiplicity="0..1" />
+    <End Type="IEspinozaAseguradoraModel.Poliza" Role="Poliza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubPoliza">
+        <PropertyRef Name="IdSubPoliza" />
+      </Principal>
+      <Dependent Role="Poliza">
+        <PropertyRef Name="IdSubPoliza" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Poliza__IdUsuari__49C3F6B7">
+    <End Type="IEspinozaAseguradoraModel.Usuario" Role="Usuario" Multiplicity="0..1" />
+    <End Type="IEspinozaAseguradoraModel.Poliza" Role="Poliza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="Poliza">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Vigencia__IdPoli__4D94879B">
+    <End Type="IEspinozaAseguradoraModel.Poliza" Role="Poliza" Multiplicity="0..1" />
+    <End Type="IEspinozaAseguradoraModel.Vigencia" Role="Vigencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Poliza">
+        <PropertyRef Name="IdPoliza" />
+      </Principal>
+      <Dependent Role="Vigencia">
+        <PropertyRef Name="IdPoliza" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Vigencia__IdUsua__4CA06362">
+    <End Type="IEspinozaAseguradoraModel.Usuario" Role="Usuario" Multiplicity="0..1" />
+    <End Type="IEspinozaAseguradoraModel.Vigencia" Role="Vigencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="Vigencia">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="PolizaGetAll_Result">
+    <Property Type="Int32" Name="IdPoliza" Nullable="false" />
+    <Property Type="String" Name="PolizaNombre" Nullable="true" MaxLength="100" />
+    <Property Type="Byte" Name="IdSubPoliza" Nullable="true" />
+    <Property Type="String" Name="NumeroPoliza" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="CreacionPoliza" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ModificacionPoliza" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="IdUsuario" Nullable="true" />
+    <Property Type="String" Name="SubPolizaNombre" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="IdVigencia" Nullable="false" />
+    <Property Type="DateTime" Name="FechaInicio" Nullable="true" />
+    <Property Type="DateTime" Name="FechaFin" Nullable="true" />
+    <Property Type="DateTime" Name="CreacionVigencia" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ModificacionVigencia" Nullable="true" Precision="23" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="UsuarioNombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="PolizaGetById_Result">
+    <Property Type="Int32" Name="IdPoliza" Nullable="false" />
+    <Property Type="String" Name="PolizaNombre" Nullable="true" MaxLength="100" />
+    <Property Type="Byte" Name="IdSubPoliza" Nullable="true" />
+    <Property Type="String" Name="NumeroPoliza" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="CreacionPoliza" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ModificacionPoliza" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="IdUsuario" Nullable="true" />
+    <Property Type="Byte" Name="IdSubPoliza1" Nullable="false" />
+    <Property Type="String" Name="SubPolizaNombre" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="IdVigencia" Nullable="false" />
+    <Property Type="DateTime" Name="FechaInicio" Nullable="true" />
+    <Property Type="DateTime" Name="FechaFin" Nullable="true" />
+    <Property Type="DateTime" Name="CreacionVigencia" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ModificacionVigencia" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="IdUsuario1" Nullable="true" />
+    <Property Type="Int32" Name="IdPoliza1" Nullable="true" />
+    <Property Type="Int32" Name="IdUsuario2" Nullable="true" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="UsuarioNombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,6 @@
+C:\Users\digis\Documents\Isaac Jair Espinoza Ocampo\Examenes\IEspinozaAseguradora\DLSQL\bin\Debug\DLSQL.dll
+C:\Users\digis\Documents\Isaac Jair Espinoza Ocampo\Examenes\IEspinozaAseguradora\DLSQL\bin\Debug\DLSQL.pdb
+C:\Users\digis\Documents\Isaac Jair Espinoza Ocampo\Examenes\IEspinozaAseguradora\DLSQL\obj\Debug\DLSQL.csproj.AssemblyReference.cache
+C:\Users\digis\Documents\Isaac Jair Espinoza Ocampo\Examenes\IEspinozaAseguradora\DLSQL\obj\Debug\DLSQL.csproj.CoreCompileInputs.cache
+C:\Users\digis\Documents\Isaac Jair Espinoza Ocampo\Examenes\IEspinozaAseguradora\DLSQL\obj\Debug\DLSQL.dll
+C:\Users\digis\Documents\Isaac Jair Espinoza Ocampo\Examenes\IEspinozaAseguradora\DLSQL\obj\Debug\DLSQL.pdb

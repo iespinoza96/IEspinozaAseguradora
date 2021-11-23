@@ -1,0 +1,3 @@
+SubPolizaAdd 'GastosMenores'
+
+SubPolizaGetAll

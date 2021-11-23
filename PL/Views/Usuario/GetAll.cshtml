@@ -1,0 +1,83 @@
+﻿@model ML.Usuario
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <h2>Usuario</h2>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <h5>Seleccione un usuario para editarlo o + para agregar un usuario...</h5>
+            <hr />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div style="float:right">
+                @Html.ActionLink("+", "Form", "Usuario", htmlAttributes: new { @class = "btn btn-success" })
+            </div>
+        </div>
+    </div>
+
+            <table class="table table-bordered table-responsive">
+                <thead>
+                    <tr>
+                        <td class="text-center" style=" font-weight:bold;">Editar</td>
+
+                        <td class="hidden">IdUsuario</td>
+                        <td class="text-center" style=" font-weight:bold;">UserName</td>
+                        <td class="text-center" style=" font-weight:bold;">Nombre</td>
+                        <td class="text-center" style=" font-weight:bold;">Apellido Paterno</td>
+                        <td class="text-center" style=" font-weight:bold;">Apellido Materno</td>
+                        <td class="text-center" style=" font-weight:bold;">Email</td>
+                        <td class="text-center" style=" font-weight:bold;">Telefono</td>
+                        <td class="text-center" style=" font-weight:bold;">Celular</td>
+                        <td class="text-center" style=" font-weight:bold;">Fecha Nacimiento </td>
+                        <td class="text-center" style=" font-weight:bold;">CURP </td>
+                        <td class="text-center" style=" font-weight:bold;">Foto</td>
+
+                        <td class="text-center" style=" font-weight:bold;">Eliminar</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (ML.Usuario usuario in Model.Usuarios)
+                    {
+                        <tr>
+                            <td class="text-center"><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Usuario", new { IdUsuario = usuario.IdUsuario })"></a></td>
+
+                            <td class="hidden">@usuario.IdUsuario</td>
+                            <td class="text-center">@usuario.UserName</td>
+                            <td>@usuario.Nombre</td>
+                            <td class="text-center">@usuario.ApellidoPaterno</td>
+                            <td class="text-center">@usuario.ApellidoMaterno</td>
+                            <td class="text-center">@usuario.Email</td>
+                            <td class="text-center">@usuario.Telefono</td>
+                            <td class="text-center">@usuario.Celular</td>
+                            <td class="text-center">@usuario.FechaNacimiento</td>
+                            <td class="text-center">@usuario.CURP</td>
+
+
+                            @if (usuario.Imagen != null)
+                            {
+                                <td><img src="data:image/jpeg;base64,@Convert.ToBase64String(usuario.Imagen)" style=" height:150px; width: 150px;" /></td>
+                            }
+                            else
+                            {
+                                <td><img src="~/Content/sinproducto.jpg" style=" height:150px; width:150px;" /></td>
+                            }
+
+
+                            <td class="text-center"><a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "Usuario", new { IdUsuario = usuario.IdUsuario })" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>

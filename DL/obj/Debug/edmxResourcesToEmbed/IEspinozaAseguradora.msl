@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="IEspinozaAseguradoraModelStoreContainer" CdmEntityContainer="IEspinozaAseguradoraEntities">
+    <EntitySetMapping Name="Empresas">
+      <EntityTypeMapping TypeName="IEspinozaAseguradoraModel.Empresa">
+        <MappingFragment StoreEntitySet="Empresa">
+          <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DireccionWeb" ColumnName="DireccionWeb" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="IEspinozaAseguradoraModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+          <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Celular" ColumnName="Celular" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="CURP" ColumnName="CURP" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empleadoes">
+      <EntityTypeMapping TypeName="IEspinozaAseguradoraModel.Empleado">
+        <MappingFragment StoreEntitySet="Empleado">
+          <ScalarProperty Name="NumEmpleado" ColumnName="NumEmpleado" />
+          <ScalarProperty Name="RFC" ColumnName="RFC" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+          <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="NSS" ColumnName="NSS" />
+          <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+          <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="EmpleadoAdd" FunctionName="IEspinozaAseguradoraModel.Store.EmpleadoAdd" />
+    <FunctionImportMapping FunctionImportName="EmpleadoUpdate" FunctionName="IEspinozaAseguradoraModel.Store.EmpleadoUpdate" />
+    <FunctionImportMapping FunctionImportName="EmpresaAdd" FunctionName="IEspinozaAseguradoraModel.Store.EmpresaAdd" />
+    <FunctionImportMapping FunctionImportName="EmpresaDelete" FunctionName="IEspinozaAseguradoraModel.Store.EmpresaDelete" />
+    <FunctionImportMapping FunctionImportName="EmpresaGetAll" FunctionName="IEspinozaAseguradoraModel.Store.EmpresaGetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IEspinozaAseguradoraModel.EmpresaGetAll_Result">
+          <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DireccionWeb" ColumnName="DireccionWeb" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="EmpresaGetById" FunctionName="IEspinozaAseguradoraModel.Store.EmpresaGetById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IEspinozaAseguradoraModel.EmpresaGetById_Result">
+          <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DireccionWeb" ColumnName="DireccionWeb" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="EmpresaUpdate" FunctionName="IEspinozaAseguradoraModel.Store.EmpresaUpdate" />
+    <FunctionImportMapping FunctionImportName="UsuarioAdd" FunctionName="IEspinozaAseguradoraModel.Store.UsuarioAdd" />
+    <FunctionImportMapping FunctionImportName="UsuarioDelete" FunctionName="IEspinozaAseguradoraModel.Store.UsuarioDelete" />
+    <FunctionImportMapping FunctionImportName="UsuarioGetAll" FunctionName="IEspinozaAseguradoraModel.Store.UsuarioGetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IEspinozaAseguradoraModel.UsuarioGetAll_Result">
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+          <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Celular" ColumnName="Celular" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="CURP" ColumnName="CURP" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UsuarioGetById" FunctionName="IEspinozaAseguradoraModel.Store.UsuarioGetById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IEspinozaAseguradoraModel.UsuarioGetById_Result">
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+          <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Celular" ColumnName="Celular" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="CURP" ColumnName="CURP" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UsuarioUpdate" FunctionName="IEspinozaAseguradoraModel.Store.UsuarioUpdate" />
+    <FunctionImportMapping FunctionImportName="EmpleadoDelete" FunctionName="IEspinozaAseguradoraModel.Store.EmpleadoDelete" />
+    <FunctionImportMapping FunctionImportName="EmpleadoGetById" FunctionName="IEspinozaAseguradoraModel.Store.EmpleadoGetById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IEspinozaAseguradoraModel.EmpleadoGetById_Result1">
+          <ScalarProperty Name="NumEmpleado" ColumnName="NumEmpleado" />
+          <ScalarProperty Name="RFC" ColumnName="RFC" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+          <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="NSS" ColumnName="NSS" />
+          <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+          <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="EmpleadoGetAll" FunctionName="IEspinozaAseguradoraModel.Store.EmpleadoGetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IEspinozaAseguradoraModel.EmpleadoGetAll_Result2">
+          <ScalarProperty Name="NumEmpleado" ColumnName="NumEmpleado" />
+          <ScalarProperty Name="RFC" ColumnName="RFC" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+          <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="NSS" ColumnName="NSS" />
+          <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+          <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+          <ScalarProperty Name="EmpresaNombre" ColumnName="EmpresaNombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="SubPolizas">
+      <EntityTypeMapping TypeName="IEspinozaAseguradoraModel.SubPoliza">
+        <MappingFragment StoreEntitySet="SubPoliza">
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdSubPoliza" ColumnName="IdSubPoliza" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SubPolizaAdd" FunctionName="IEspinozaAseguradoraModel.Store.SubPolizaAdd" />
+    <FunctionImportMapping FunctionImportName="SubPolizaDelete" FunctionName="IEspinozaAseguradoraModel.Store.SubPolizaDelete" />
+    <FunctionImportMapping FunctionImportName="SubPolizaGetAll" FunctionName="IEspinozaAseguradoraModel.Store.SubPolizaGetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IEspinozaAseguradoraModel.SubPolizaGetAll_Result">
+          <ScalarProperty Name="IdSubPoliza" ColumnName="IdSubPoliza" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SubPolizaGetById" FunctionName="IEspinozaAseguradoraModel.Store.SubPolizaGetById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IEspinozaAseguradoraModel.SubPolizaGetById_Result">
+          <ScalarProperty Name="IdSubPoliza" ColumnName="IdSubPoliza" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SubPolizaUpdate" FunctionName="IEspinozaAseguradoraModel.Store.SubPolizaUpdate" />
+    <EntitySetMapping Name="Polizas">
+      <EntityTypeMapping TypeName="IEspinozaAseguradoraModel.Poliza">
+        <MappingFragment StoreEntitySet="Poliza">
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="NumeroPoliza" ColumnName="NumeroPoliza" />
+          <ScalarProperty Name="IdSubPoliza" ColumnName="IdSubPoliza" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdPoliza" ColumnName="IdPoliza" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vigencias">
+      <EntityTypeMapping TypeName="IEspinozaAseguradoraModel.Vigencia">
+        <MappingFragment StoreEntitySet="Vigencia">
+          <ScalarProperty Name="IdPoliza" ColumnName="IdPoliza" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+          <ScalarProperty Name="IdVigencia" ColumnName="IdVigencia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="PolizaAdd" FunctionName="IEspinozaAseguradoraModel.Store.PolizaAdd" />
+    <FunctionImportMapping FunctionImportName="PolizaDelete" FunctionName="IEspinozaAseguradoraModel.Store.PolizaDelete" />
+    <FunctionImportMapping FunctionImportName="PolizaGetAll" FunctionName="IEspinozaAseguradoraModel.Store.PolizaGetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IEspinozaAseguradoraModel.PolizaGetAll_Result">
+          <ScalarProperty Name="IdPoliza" ColumnName="IdPoliza" />
+          <ScalarProperty Name="PolizaNombre" ColumnName="PolizaNombre" />
+          <ScalarProperty Name="IdSubPoliza" ColumnName="IdSubPoliza" />
+          <ScalarProperty Name="NumeroPoliza" ColumnName="NumeroPoliza" />
+          <ScalarProperty Name="CreacionPoliza" ColumnName="CreacionPoliza" />
+          <ScalarProperty Name="ModificacionPoliza" ColumnName="ModificacionPoliza" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="SubPolizaNombre" ColumnName="SubPolizaNombre" />
+          <ScalarProperty Name="IdVigencia" ColumnName="IdVigencia" />
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+          <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+          <ScalarProperty Name="CreacionVigencia" ColumnName="CreacionVigencia" />
+          <ScalarProperty Name="ModificacionVigencia" ColumnName="ModificacionVigencia" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UsuarioNombre" ColumnName="UsuarioNombre" />
+          <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+          <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PolizaGetById" FunctionName="IEspinozaAseguradoraModel.Store.PolizaGetById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IEspinozaAseguradoraModel.PolizaGetById_Result">
+          <ScalarProperty Name="IdPoliza" ColumnName="IdPoliza" />
+          <ScalarProperty Name="PolizaNombre" ColumnName="PolizaNombre" />
+          <ScalarProperty Name="IdSubPoliza" ColumnName="IdSubPoliza" />
+          <ScalarProperty Name="NumeroPoliza" ColumnName="NumeroPoliza" />
+          <ScalarProperty Name="CreacionPoliza" ColumnName="CreacionPoliza" />
+          <ScalarProperty Name="ModificacionPoliza" ColumnName="ModificacionPoliza" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdSubPoliza1" ColumnName="IdSubPoliza1" />
+          <ScalarProperty Name="SubPolizaNombre" ColumnName="SubPolizaNombre" />
+          <ScalarProperty Name="IdVigencia" ColumnName="IdVigencia" />
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+          <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+          <ScalarProperty Name="CreacionVigencia" ColumnName="CreacionVigencia" />
+          <ScalarProperty Name="ModificacionVigencia" ColumnName="ModificacionVigencia" />
+          <ScalarProperty Name="IdUsuario1" ColumnName="IdUsuario1" />
+          <ScalarProperty Name="IdPoliza1" ColumnName="IdPoliza1" />
+          <ScalarProperty Name="IdUsuario2" ColumnName="IdUsuario2" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UsuarioNombre" ColumnName="UsuarioNombre" />
+          <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+          <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PolizaUpdate" FunctionName="IEspinozaAseguradoraModel.Store.PolizaUpdate" />
+  </EntityContainerMapping>
+</Mapping>
